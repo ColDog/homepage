@@ -1,0 +1,121 @@
+Sudoku Builder
+May 5, 2015
+This sudoku solving algorithm I hope shows off my ability to build and design good data structures and algorithms. I hope to walk you through my thought process and design.
+
+Overall, the algorithm is simple to describe. First, build an array of numbers from 1 to 9 that are not in the current squares row, column or grid. If this array has at least one number in it, insert this number into the square and repeat the process for the next square. If the array is empty, meaning there are no possible solutions to this puzzle, move back a square, delete the number in this square and try again. One key part of this is having a duplicate data structure to handle the already tried values, making sure that we don't simply jump back and forth between squares with the same two numbers.
+
+## The Code
+The Puzzle contains a three dimensional array that looks almost like a sudoku puzzle is normally displayed, with each grid being fenced in by brackets. This is to easily find the values of the grid that the current sudoku is in without the use of many different loops.
+```ruby
+[
+  [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
+  [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
+  [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
+  [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
+  [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
+  [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
+  [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
+  [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
+  [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
+]
+```
+Each value is represented with an empty array, this is an easy way of translating between the previously used sudoku puzzles and the current one that has empty values. This allows us to easily call an increment and de-increment functions to easily move up and down the puzzle.
+
+```ruby
+def increment
+  r = @loc[0] ; g = @loc[1] ; c = @loc[2]
+  if g == 2 && c == 2
+    # increment row
+    @loc[0] += 1
+    @loc[1] = 0
+    @loc[2] = 0
+  elsif c == 2 && g < 3
+    # increment grid
+    @loc[1] += 1
+    @loc[2] = 0
+  elsif c < 2
+    # increment column
+    @loc[2] += 1
+  end
+end
+
+def de_increment
+  r = @loc[0] ; g = @loc[1] ; c = @loc[2]
+  if r == 0 && g == 0 && c == 0
+    # reset everything
+    @res += 1
+    reset
+  elsif c == 0 && g == 0
+    # de increment row
+    @loc[0] -= 1
+    @loc[1] = 2
+    @loc[2] = 2
+  elsif c == 0 && r >= 0
+    # de increment grid
+    @loc[1] -= 1
+    @loc[2] = 2
+  elsif c > 0
+    # de increment column
+    @loc[2] -= 1
+  end
+end
+```
+Once we have these methods, we only need to get the current column, row and grid of the square that we are in. These are as follows.
+
+```ruby
+def row
+  @sud[@loc[0]].flatten
+end
+
+def column
+  c = @loc[2] ; g = @loc[1]
+  cols = []
+  @sud.each do |row|
+    cols << row[g][c]
+  end
+  cols.flatten
+end
+
+def grid
+  g = @loc[1] ; r = @loc[0] ; grids = []
+  if r <= 2
+    i = 0
+  elsif r <= 5 && r > 2
+    i = 3
+  elsif r <= 8 && r > 5
+    i = 6
+  end
+  3.times do
+    grids << @sud[i][g]
+    i += 1
+  end
+ grids.flatten
+end
+```
+
+As you can see, the row method is much simpler, while the grid method still involves a loop, which I would like to get out of. This means the data structure is essentially complete, and we can now easily create the solving and building algorithm. This is made simple with the good data structure that we have in place. Note that @loc is the current location that we are at, which consists of three variables corresponding to each part of the three dimensional sudoku array.
+
+```ruby
+def solve
+  @loc = [0,0,0] ; @tot = 0 ; @res = 0 ; up = true
+  loop do
+    return @sud if @loc == [9,0,0]
+    if value.class == Fixnum
+      if up == true
+        increment
+      elsif up == false
+        de_increment
+      end
+    else
+      poss = get_possibilities
+      if !poss.empty?
+        write(poss.sample)
+        increment ; up = true
+      else
+        de_increment ; up = false
+      end
+    end
+    @tot += 1
+  end
+end
+```

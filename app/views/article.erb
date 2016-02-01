@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Colin Walker</title>
+  <meta name="description" content="My Personal Website">
+  <meta name="author" content="Colin Walker">
+  <link rel="stylesheet" href="/public/app.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div id="page-container">
+  <aside id="sidebar">
+    <img class="img-responsive" src="/public/thumb.jpg">
+    <h2>Colin Walker</h2>
+    <h4>Software Developer</h4>
+    <ul>
+      <li><i class="fa fa-github"></i> &nbsp;<a href="http://github.com/coldog">GitHub [coldog]</a></li>
+      <li><i class="fa fa-envelope"></i> &nbsp;<a href="mailto:colinwalker270@gmail.com">Email</a></li>
+    </ul>
+    <hr>
+    <%= @description %>
+  </aside>
+  <main>
+    <article style="position: relative">
+      <h6 style="position: absolute; top: 0; right: 20px"><%= @article.date %></h6>
+      <h2><a href="/articles/<%= @article.name %>"><%= @article.title %></a></h2>
+      <%= @article.body %>
+    </article>
+  </main>
+</div>
+
+<a style="position: fixed; top: 0; right: 0; padding: 20px; cursor: pointer" onclick="toggleSidebar()"><i class="fa fa-bars"></i></a>
+<a style="position: fixed; top: 0; right: 20px; padding: 20px; cursor: pointer" href="/"><i class="fa fa-home"></i></a>
+
+<script>
+  function toggleSidebar() {
+    var d = document.getElementById('sidebar');
+    if (d.className.indexOf("toggled") >= 0) {
+      d.className = d.className.replace('toggled', '')
+    } else {
+      d.className += ' toggled'
+    }
+  }
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>
+  (function(){
+    hljs.initHighlightingOnLoad();
+  })()
+</script>
+
+</body>
+</html>

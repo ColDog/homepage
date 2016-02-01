@@ -1,0 +1,20 @@
+Hive Application
+Mar 15, 2015
+This project currently supports over 250 users and organizations that are registered to work in the HiVE's work sharing space. The project took a mess of Google Docs and allowed management to easily upload them into a cloud based application that took the headaches out of everyday management. Instead of trying to keep track of many different Key Fobs and Mailboxes, management is free to do what they do best.
+
+I took the project from conception, which started as a prototype of a project on Riipen, to reality in under a month. I worked closely with management to come up with specifications, and then continuously built features, implementing feedback and comments from management quickly and precisely.
+
+I credit both my technical skills in being able to quickly and efficiently build and test features as well as my interpersonal skills to be able to maintain a strong relationship with the director of HiVE, Melissa, who had the following to say about my original prototype:
+
+> Colin went above and beyond by creating a demo for us, so we could see and interact with how his idea might work! We were very impressed.
+
+Melissa then went on to say the following about the final product, which overall took about a month to complete:
+
+> Colin found our project through Riipen and impressed us immediately by producing a beta version of what we needed from the short write-up we had posted. In one meeting and a few email correspondences, he refined that initial version into something that was just right for us: did everything we needed it to do, simply and easily. He worked with me to add more features as I thought of them and to make changes as we figured out what worked best for us. The process was very smooth. Colin always delivered what he said he would on time and was very responsive to questions. He took us from 6 separate spreadsheets to one beautiful database; I have already recommended him to a couple of other small organizations that might need this kind of work in the future.
+
+## Technical
+Technically, this Rails application focused on simplicity, ease of use and speed. Almost everything is cached to provide lightning fast results even on free Heroku dynos. The layout is simple and easy to use and focuses on productivity rather than looks.
+
+One of the most technically challenging pieces of this project was to provide an easy to use interface for staff to upload their Google docs containing their entire user base. This was implemented with a CSV upload, and rigid error catching that displays every record and whether it was successfully uploaded, or what errors took place.
+
+Otherwise, most of the work was focused on providing a very standardized and simple Rails way method of doing things with significant refactoring throughout. Overall, I am very happy with the final product, as I think it shows off greatly my style, simple and fast.

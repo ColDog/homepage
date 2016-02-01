@@ -1,0 +1,29 @@
+aside {
+    width: 25%; float: left; padding: 3%;
+    background-color: white; z-index: 200;
+    overflow: scroll; height: 100%;
+    transition: all 0.5s;
+}
+main { width: 60%; float: right; padding: 3%; }
+.img-responsive { width: 100%; }
+#page-container { clear: both }
+
+p, div, aside, main, footer, header, h1, h2 h3, h4, h5, h6 {  font-family: "Source Code Pro", Monaco, monospace  }
+
+p { font-size: 0.8em }
+a { text-decoration: none; color: #35818b }
+a:visited { text-decoration: none;  color: #35818b }
+h6 { padding: 0; }
+hr  { border-color: #eee }
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+li { display: block; padding: 0; font-size: 0.8em }
+
+@media screen and (max-width: 720px) {
+    aside {width: 300px; position: fixed; top: 0; left: -400px; float: none; padding-bottom: 150px}
+    aside.toggled {left: 0;}
+    main {width: 100%; float: none; padding: 0}
+}

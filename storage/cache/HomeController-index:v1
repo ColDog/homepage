@@ -1,0 +1,82 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Colin Walker</title>
+  <meta name="description" content="My Personal Website">
+  <meta name="author" content="Colin Walker">
+  <link rel="stylesheet" href="/public/app.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div id="page-container">
+  <aside id="sidebar">
+    <img class="img-responsive" src="/public/thumb.jpg">
+    <h2>Colin Walker</h2>
+    <h4>Software Developer</h4>
+    <ul>
+      <li><i class="fa fa-github"></i> &nbsp;<a href="http://github.com/coldog">GitHub [coldog]</a></li>
+      <li><i class="fa fa-envelope"></i> &nbsp;<a href="mailto:colinwalker270@gmail.com">Email</a></li>
+    </ul>
+    <hr>
+    <p>I am a software developer currently working at <a href="http://musefind.com">Musefind</a>.</p>
+
+<p>I mostly work on the analytics platform that powers our enterprise clients and our matching algorithms. I also work on front end UI design. I work in Java, PHP, Python, Javascript and love any opportunity to work in Ruby. I am most experienced with Ruby, Python and Javascript, inexperienced but competent in Php and trying really hard recently to build more stuff with Java and loving it so far.</p>
+
+<p>My personal project have included around hacking into Node.js and building Sudoku builder.</p>
+
+  </aside>
+  <main>
+    
+    <article style="position: relative">
+      <h6 style="position: absolute; top: 0; right: 20px">Jan 31, 2016</h6>
+      <h2><a href="/articles/musefind">Musefind</a></h2>
+      <p>This is an article about my current job...</p>
+
+    </article>
+    
+    <article style="position: relative">
+      <h6 style="position: absolute; top: 0; right: 20px">June 10, 2015</h6>
+      <h2><a href="/articles/fitbit">Fitbit Sleep Analyzer</a></h2>
+      <p>I built this project to create a sleep cycle analyzer from my Fitbit data. I am very interested in the change in sleep patterns across people, and I think there is a lot you can tell from someone&#39;s sleep. Fitbit unfortunately does not calculate sleep cycles, but they do give second level heart rate data and accelerometer data for a person&#39;s sleep. This app combines this data and then applies an algorithm that I built to analyze a person&#39;s sleep. I hope to continue working on this project and pro...</p>
+
+    </article>
+    
+    <article style="position: relative">
+      <h6 style="position: absolute; top: 0; right: 20px">May 5, 2015</h6>
+      <h2><a href="/articles/sudoku-builder">Sudoku Builder</a></h2>
+      <p>This sudoku solving algorithm I hope shows off my ability to build and design good data structures and algorithms. I hope to walk you through my thought process and design.</p>
+
+<p>Overall, the algorithm is simple to describe. First, build an array of numbers from 1 to 9 that are not in the current squares row, column or grid. If this array has at least one number in it, insert this number into the square and repeat the process for the next square. If the array is empty, meaning there are no possible s...</p>
+
+    </article>
+    
+    <article style="position: relative">
+      <h6 style="position: absolute; top: 0; right: 20px">Mar 15, 2015</h6>
+      <h2><a href="/articles/Hive">Hive Application</a></h2>
+      <p>This project currently supports over 250 users and organizations that are registered to work in the HiVE&#39;s work sharing space. The project took a mess of Google Docs and allowed management to easily upload them into a cloud based application that took the headaches out of everyday management. Instead of trying to keep track of many different Key Fobs and Mailboxes, management is free to do what they do best.</p>
+
+<p>I took the project from conception, which started as a prototype of a project on Riipen...</p>
+
+    </article>
+    
+  </main>
+</div>
+
+<a style="position: fixed; top: 0; right: 0; padding: 20px; cursor: pointer" onclick="toggleSidebar()"><i class="fa fa-bars"></i></a>
+
+<script>
+  function toggleSidebar() {
+    var d = document.getElementById('sidebar');
+    if (d.className.indexOf("toggled") >= 0) {
+      d.className = d.className.replace('toggled', '')
+    } else {
+      d.className += ' toggled'
+    }
+  }
+</script>
+</body>
+</html>
