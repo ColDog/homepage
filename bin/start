@@ -1,5 +1,5 @@
 #!/bin/bash
-cd project.git
+sudo cd project.git
 sudo GIT_WORK_TREE=/home/admin/app/ git checkout -f
-cd ../
-rackup config.ru --port 3000 --daemonize config.ru
+sudo cd ../
+sudo rackup config.ru --port 3000 --daemonize config.ru
