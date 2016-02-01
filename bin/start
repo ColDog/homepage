@@ -1,5 +1,5 @@
 #!/bin/bash
-rm -rf storage/cache
+sudo rm -rf storage/cache
 sudo mkdir storage/cache
 sudo service nginx restart
 sudo sudo fuser -k -n tcp 3000
