@@ -1,5 +1,5 @@
 My New Website
-Jan 31, 2015
+Jan 31, 2016
 This is now officially my new website. A much simpler version compared to the previous one which should give me more of an incentive to write more blogs and stuff. I built a simple little ruby web framework to handle it ontop of Rack. It was actually easier than I thought, Rack is a pleasure to work with.
 
 Most of the work happens in the config.ru file, where I define routes and create the rack application. All it really does is ensure that all the controllers are imported and then uses the rails style route parsing to map some routes to regex expressions.
