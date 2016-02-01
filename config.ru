@@ -12,5 +12,6 @@ app.router.config do
   get /\//,                       'HomeController#index'
 end
 
+use Rack::Deflater
 use Rack::Static, urls: ['/public'], root: File.expand_path(File.dirname(__FILE__), 'public')
 run app
