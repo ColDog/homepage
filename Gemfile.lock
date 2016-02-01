@@ -1,22 +1,17 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    daemons (1.2.3)
-    eventmachine (1.0.9.1)
     kramdown (1.9.0)
+    puma (2.16.0)
     rack (1.5.5)
-    thin (1.6.4)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0, >= 1.0.4)
-      rack (~> 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   kramdown
+  puma
   rack (~> 1.5.2)
-  thin
 
 BUNDLED WITH
    1.10.6
