@@ -1,0 +1,83 @@
+My New Website
+Jan 31, 2015
+This is now officially my new website. A much simpler version compared to the previous one which should give me more of an incentive to write more blogs and stuff. I built a simple little ruby web framework to handle it ontop of Rack. It was actually easier than I thought, Rack is a pleasure to work with.
+
+Most of the work happens in the config.ru file, where I define routes and create the rack application. All it really does is ensure that all the controllers are imported and then uses the rails style route parsing to map some routes to regex expressions.
+
+~~~ruby
+require 'bundler'
+require './lib/app'
+Dir['./app/controllers/*.rb'].each {|file| require file }
+
+Bundler.require
+
+app = App.new
+
+app.router.config do
+  get /\/articles\/(?<title>.*)/, 'ArticlesController#show'
+  get /\/articles/,               'ArticlesController#index'
+  get /\//,                       'HomeController#index'
+end
+
+use Rack::Deflater
+use Rack::Static, urls: ['/public'], root: File.expand_path(File.dirname(__FILE__), 'public')
+run app
+~~~
+
+The base controller provides some quick and easy ways to cache files and also to render the html. The cache_key function allows you to define a cache key for each action that is either computed or static. So when I add a new article and push it out, the cache will be invalidated since I can use the total number of articles as the cache key. It's a simple fun little way to manage the caching. I like the simplicity and ease of use.
+
+~~~ruby
+require 'erb'
+
+class Controller
+  attr_accessor :params, :res, :path, :method, :action, :controller
+  CACHE_KEYS = {}
+
+  def self.cache_key(action, key)
+    CACHE_KEYS[self.name] = CACHE_KEYS[self.name] || {}
+    CACHE_KEYS[self.name][action] = key
+  end
+
+  def get_binding
+    binding
+  end
+
+  def cache_key
+    if @cache_key
+      @cache_key
+    elsif CACHE_KEYS[self.class.name] && CACHE_KEYS[self.class.name][action]
+      cache_key = CACHE_KEYS[self.class.name][action]
+      if cache_key.is_a? Symbol
+        @cache_key = "#{controller}-#{action}:#{send(cache_key)}"
+      else
+        @cache_key ="#{controller}-#{action}:#{cache_key}"
+      end
+    end
+  end
+
+  def from_cache(tpl)
+    path = "#{File.expand_path('..', File.dirname(__FILE__))}/storage/cache/#{cache_key}"
+    if File.exists?(path)
+      html = IO.read(path)
+    else
+      html = _render(tpl)
+      IO.write(path, html)
+    end
+    html
+  end
+
+  def render(tpl)
+    if cache_key
+      from_cache(tpl)
+    else
+      _render(tpl)
+    end
+  end
+
+  def _render(tpl)
+    content = File.open("#{File.expand_path('..', File.dirname(__FILE__))}/app/views/#{tpl}.erb", "rb").read
+    ERB.new(content).result(self.get_binding)
+  end
+end
+
+~~~
