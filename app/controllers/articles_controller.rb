@@ -7,7 +7,11 @@ class ArticlesController < Controller
   def show
     @description = About.description
     @article = Article.find(params['title'])
-    render 'article'
+    if @article
+      render 'article'
+    else
+
+    end
   end
 
   private
