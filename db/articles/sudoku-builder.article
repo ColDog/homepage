@@ -6,6 +6,7 @@ Overall, the algorithm is simple to describe. First, build an array of numbers f
 
 ## The Code
 The Puzzle contains a three dimensional array that looks almost like a sudoku puzzle is normally displayed, with each grid being fenced in by brackets. This is to easily find the values of the grid that the current sudoku is in without the use of many different loops.
+
 ~~~ruby
 [
   [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
@@ -19,6 +20,7 @@ The Puzzle contains a three dimensional array that looks almost like a sudoku pu
   [ [ [], [], [] ], [ [], [], [] ], [ [], [], [] ] ],
 ]
 ~~~
+
 Each value is represented with an empty array, this is an easy way of translating between the previously used sudoku puzzles and the current one that has empty values. This allows us to easily call an increment and de-increment functions to easily move up and down the puzzle.
 
 ~~~ruby
