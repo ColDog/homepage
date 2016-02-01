@@ -4,7 +4,7 @@ sudo sudo fuser -k -n tcp 3000
 sudo sudo fuser -k -n tcp 3001
 sudo sudo fuser -k -n tcp 3002
 sudo sudo fuser -k -n tcp 3003
-sudo rackup config.ru --port 3000 --daemonize config.ru
-sudo rackup config.ru --port 3001 --daemonize config.ru
-sudo rackup config.ru --port 3002 --daemonize config.ru
-sudo rackup config.ru --port 3003 --daemonize config.ru
+sudo rackup config.ru --port 3000 --daemonize config.ru --env production
+sudo rackup config.ru --port 3001 --daemonize config.ru --env production
+sudo rackup config.ru --port 3002 --daemonize config.ru --env production
+sudo rackup config.ru --port 3003 --daemonize config.ru --env production

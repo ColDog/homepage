@@ -26,7 +26,7 @@ class Article
     if len
       @body = @body[0, len] + '...'
     end
-    Kramdown::Document(@body).to_html
+    Kramdown::Document.new(@body).to_html
   end
 
   def self.all
