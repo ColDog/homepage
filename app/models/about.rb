@@ -1,4 +1,4 @@
-require 'github/markdown'
+require 'kramdown'
 
 class About
 
@@ -8,7 +8,7 @@ class About
 
   def self.gets(name)
     content = File.read("#{File.expand_path('../..', File.dirname(__FILE__))}/db/#{name}.md")
-    GitHub::Markdown.render_gfm(content)
+    Kramdown::Document.new(content).to_html
   end
 
 end

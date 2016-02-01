@@ -1,4 +1,4 @@
-require 'github/markdown'
+require 'kramdown'
 require 'date'
 
 class Article
@@ -26,7 +26,7 @@ class Article
     if len
       @body = @body[0, len] + '...'
     end
-    GitHub::Markdown.render_gfm(@body)
+    Kramdown::Document(@body).to_html
   end
 
   def self.all
